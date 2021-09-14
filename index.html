@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="./node_modules/photoswipe/src/photoswipe.css"/>
+	<title>Test 1</title>
+</head>
+<body>
+	<script type="module">
+import PhotoSwipeLightbox from './node_modules/photoswipe/dist/photoswipe-lightbox.esm.js';
+
+const backEasing = {
+  in: 'cubic-bezier(0.6, -0.28, 0.7, 1)',
+  out: 'cubic-bezier(0.3, 0, 0.32, 1.275)',
+  inOut: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)'
+};
+
+const lightbox = new PhotoSwipeLightbox({
+  gallerySelector:'#gallery--customized-transition',
+  childSelector:'a',
+
+  showHideAnimationType: 'zoom',
+  showAnimationDuration: 1000,
+  hideAnimationDuration: 1000,
+
+  pswpModule: './node_modules/photoswipe/dist/photoswipe.esm.js'
+});
+lightbox.on('firstUpdate', () => {
+  lightbox.pswp.options.easing = backEasing.out;
+});
+lightbox.on('initialZoomInEnd', () => {
+  lightbox.pswp.options.easing = backEasing.inOut;
+});
+lightbox.on('close', () => {
+  lightbox.pswp.options.easing = backEasing.in;
+});
+lightbox.init();
+</script>
+	<div class="pswp-gallery" id="gallery--customized-transition">
+<a href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-2500.jpg" 
+    data-pswp-width="1875" 
+    data-pswp-height="2500" 
+    target="_blank">
+    <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-200.jpg" alt="" />
+  </a>
+<a href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-2500.jpg" 
+    data-pswp-width="1669" 
+    data-pswp-height="2500" 
+    target="_blank">
+    <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-200.jpg" alt="" />
+  </a>
+<a href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-2500.jpg" 
+    data-pswp-width="2500" 
+    data-pswp-height="1666" 
+    target="_blank">
+    <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-200.jpg" alt="" />
+  </a>
+</div>
+
+</body>
+</html>
